@@ -3,43 +3,52 @@
 
 *version 16.1 //always set the stata version being used
 
-// caminhos (check your username by typing "di c(username)" in Stata) ----
-global ROOT "E:\Dropbox\__Research\Amedeo Piolatto\political_alignment_and_droughts"
-global DATABASE "E:\Dropbox\__Research\Amedeo Piolatto\political_alignment_and_droughts"
+// caminhos (check your username by typing "di c(username)" in Stata)" ----
+global ROOT "E:/Dropbox/__Research/Amedeo Piolatto/political_alignment_and_droughts"
+global DATABASE "E:/Dropbox/__Research/Amedeo Piolatto/political_alignment_and_droughts"
 
 // check your username by typing "di c(username)" in Stata) ----
-if "`c(username)'" == "Francisco"   {
-    global ROOT "C:/Users/Francisco/Dropbox/political_alignment_and_droughts"
-	global DATABASE "C:/Users/Francisco/Dropbox/political_alignment_and_droughts"
-}
-else if "`c(username)'" == "f.cavalcanti"   {
-    global ROOT "C:\Users\f.cavalcanti\Documents\GitHub\Boffa-Cavalcanti-Piollato_voter_information_and_alignment"
-	global DATABASE "C:\Users\f.cavalcanti\Dropbox\political_alignment_and_droughts"
+if "`c(username)'" == "f.cavalcanti"   {
+    global ROOT "C:/Users/f.cavalcanti/Documents/Drought-reliefs-and-Partisanship"
+	global DATABASE "C:/Users/f.cavalcanti/Dropbox/political_alignment_and_droughts"
 
 }
 else if "`c(username)'" == "DELL"   {
-    global ROOT "C:/Users/DELL/Documents/GitHub/Boffa-Cavalcanti-Piollato_voter_information_and_alignment"
+    global ROOT "C:/Users/DELL/Documents/GitHub/Drought-reliefs-and-Partisanship"
 	global DATABASE "D:/Dropbox/political_alignment_and_droughts"
 }
 
-global inpdir				"${DATABASE}/build/workfile/output"
-global inpdir_analysis		"${ROOT}/analysis/input"   
-global outdir				"${ROOT}/analysis/output"
-global codedir    			"${ROOT}/analysis/code"
-global tmp					"${ROOT}/analysis/tmp"
+global inpdir				"$DATABASE/build/workfile/output"
+global inpdir_analysis		"$ROOT/analysis/input"   
+global outdir				"$ROOT/analysis/output"
+global codedir    			"$ROOT/analysis/code"
+global tmp					"$ROOT/analysis/tmp"
 
+*******************************************************************************
 * install packages for replication
-ssc install dc // for DCdensity command
+*******************************************************************************
 net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/master/src/") // for reghdfe
 net describe st0366, from(http://www.stata-journal.com/software/sj14-4)
 net install st0366, replace // for rdbwselect
+ssc install boottest
+
+*******************************************************************************
+* install packages for replication - MANNUALLY
+*******************************************************************************
+// Package 1
+// Comment: make sure to have "DCdensity.ado" Put this file in your ado directory.  To find out where this is, issue-sysdir- at the Stata prompt. 
+// link for "DCdensity": https://github.com/iphone7725/DCdensity
+
+// Package 2
+// Comment: make sure to have "summclust.ado" Put this file in your ado directory.  To find out where this is, issue-sysdir- at the Stata prompt. 
+// link for "summclust": https://github.com/mattdwebb/summclust
 
 * make sure there are output folders
-cap mkdir $tmp
-cap mkdir $outdir
-cap mkdir "$outdir\graphs"
-cap mkdir "$outdir\descriptive_statistics"
-cap mkdir "$outdir\regressions"
+cap mkdir "$tmp"
+cap mkdir "$outdir"
+cap mkdir "$outdir/graphs"
+cap mkdir "$outdir/descriptive_statistics"
+cap mkdir "$outdir/regressions"
 
 ********************************
 *** CALL DATABASE			 ***

@@ -33,7 +33,7 @@ twoway (scatter Yj3 Xj3  if Xj3 > -0.5 & Xj3 < 0.5 )  (line fhat3 r03  if r03 > 
 	*/	graphregion(color(white)) 	/*
 	*/ 	xlabel(#4) 	/*
 	*/ 	legend(on order(- "McCrary: `mc_full'" "s.e.:`mcse_full'") ring(0) pos(11) justification(center) size(small) ) 	/*
-	*/  saving("$tmp\iten1", replace) 	
+	*/  saving("$tmp\iten1.gph", replace) 	
 
 drop fhat3_95low fhat3_95high Yj3 Xj3 r03 fhat3 se_fhat3
 
@@ -65,14 +65,14 @@ twoway (scatter Yj3 Xj3  if Xj3 > -0.5 & Xj3 < 0.5 )  (line fhat3 r03  if r03 > 
 	*/	graphregion(color(white)) 	/*
 	*/ 	xlabel(#4) 	/*
 	*/ 	legend(on order(- "McCrary: `mc_full'" "s.e.:`mcse_full'") ring(0) pos(11) justification(center) size(small) ) 	/*
-	*/  saving("$tmp\iten2", replace) 	
+	*/  saving("$tmp\iten2.gph", replace) 	
 
 drop fhat3_95low fhat3_95high Yj3 Xj3 r03 fhat3 se_fhat3
 	
 ********************************************************	
 * Combing graphs with the same legend
 ********************************************************	
-graph combine "$tmp\iten1" "$tmp\iten2", 	/*
+graph combine "$tmp\iten1.gph" "$tmp\iten2.gph", 	/*
 	*/ 		/* legendfrom("$tmp\iten1") 
 	*/ 	title("McCrary Density Test", size(Small)) 	/*
 	*/ 	cols(2) 	/*

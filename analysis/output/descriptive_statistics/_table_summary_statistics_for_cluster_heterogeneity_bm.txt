@@ -1,0 +1,472 @@
+------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/f.cavalcanti/Documents/Drought-reliefs-and-Partisanship/analysis/output\descriptive_statistics\_ta
+> ble_summary_statistics_for_cluster_heterogeneity_bm.txt
+  log type:  text
+ opened on:  13 Apr 2023, 16:11:02
+
+. 
+. timer clear 1
+
+. timer on 1 
+
+. 
+. * generate matrix of results
+. mata: tabthree = J(6,8,.)
+
+. 
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(cod_mun)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+. cap drop temp_indexa
+
+.         
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+> cluster(cod_mun) rho(0.5) jack
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by cod_mun.
+There are 1507 observations within 685 cod_mun clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.058257   3.6457   0.0003    0.098006    0.326773
+   CV3 |   0.212389   0.043394   4.8944   0.0000    0.127187    0.297591
+  CV3J |   0.212389   0.043394   4.8944   0.0000    0.127187    0.297591
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |     2.00      1.004509       0.000000   0.202614    
+        q1 |     2.00      1.010809       0.000122   0.212211    
+    median |     2.00      1.014436       0.000565   0.212430    
+      mean |     2.20      1.016058       0.001460   0.212390    
+        q3 |     2.00      1.018525       0.001739   0.212855    
+       max |     5.00      1.061599       0.025214   0.220906    
+-----------+-----------------------------------------------------
+   coefvar |     0.22      0.008747       1.716015   0.007818    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  = 173.840
+-----------------------------
+G*(rho) and G*(1) are not available.
+There are fixed effects at the cluster or subcluster level.
+
+.         
+.         mata:tabthree[1,1] = $N_Clusters
+
+.         mata:tabthree[1,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[1,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[1,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[1,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[1,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[1,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[1,8] = clustsum[6,1] // Cluster Variability -  max 
+
+.         
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(micro_region)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+. cap drop temp_indexa
+
+.         
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+>  cluster(micro_region) rho(0.5) jack    
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by micro_region.
+There are 1507 observations within 358 micro_region clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.067591   3.1423   0.0018    0.079462    0.345317
+   CV3 |   0.212389   0.051004   4.1642   0.0000    0.112084    0.312695
+  CV3J |   0.212389   0.051004   4.1642   0.0000    0.112084    0.312695
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |     2.00      1.004516       0.000000   0.186221    
+        q1 |     2.00      1.013776       0.000297   0.212203    
+    median |     3.00      1.035001       0.001175   0.212498    
+      mean |     4.21      1.944134       0.002793   0.212386    
+        q3 |     5.00      2.056185       0.003628   0.213238    
+       max |    21.00     10.199279       0.027968   0.223642    
+-----------+-----------------------------------------------------
+   coefvar |     0.73      0.692262       1.461912   0.012728    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  = 114.333
+-----------------------------
+G*(rho) and G*(1) are not available.
+There are fixed effects at the cluster or subcluster level.
+
+.         
+.         mata:tabthree[2,1] = $N_Clusters
+
+.         mata:tabthree[2,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[2,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[2,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[2,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[2,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[2,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[2,8] = clustsum[6,1] // Cluster Variability -  max 
+
+.         
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(uf)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+. cap drop temp_indexa
+
+.                 
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+>  cluster(uf) rho(0.5) jack      
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by uf.
+There are 1507 observations within 26 uf clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.105402   2.0150   0.0548   -0.004691    0.429470
+   CV3 |   0.212389   0.090520   2.3463   0.0272    0.025959    0.398819
+  CV3J |   0.212389   0.090519   2.3464   0.0272    0.025963    0.398816
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |     2.00      1.006354       0.000136   0.169080    
+        q1 |    16.00      7.118622       0.006867   0.206061    
+    median |    32.00     15.223059       0.020014   0.213166    
+      mean |    57.96     26.769231       0.038462   0.212275    
+        q3 |    82.00     38.564445       0.063296   0.218334    
+       max |   256.00      1.16e+02       0.192493   0.266824    
+-----------+-----------------------------------------------------
+   coefvar |     1.08      1.065809       1.200989   0.086973    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  = 10.893
+-----------------------------
+G*(rho) and G*(1) are not available.
+There are fixed effects at the cluster or subcluster level.
+
+.         
+.         mata:tabthree[3,1] = $N_Clusters
+
+.         mata:tabthree[3,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[3,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[3,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[3,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[3,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[3,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[3,8] = clustsum[6,1] // Cluster Variability -  max 
+
+.         
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(year)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+. cap drop temp_indexa
+
+.                 
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+>  cluster(year) rho(0.5) jack    
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by year.
+There are 1507 observations within 5 year clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.108806   1.9520   0.1227   -0.089704    0.514483
+   CV3 |   0.212389   0.181382   1.1709   0.3066   -0.291209    0.715987
+  CV3J |   0.212389   0.180917   1.1740   0.3055   -0.289916    0.714695
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |   254.00      1.14e+02       0.184703   0.090123    
+        q1 |   290.00      1.30e+02       0.190711   0.138344    
+    median |   295.00      1.33e+02       0.194961   0.253225    
+      mean |   301.40      1.39e+02       0.200000   0.218882    
+        q3 |   320.00      1.53e+02       0.203373   0.280231    
+       max |   348.00      1.66e+02       0.226251   0.332484    
+-----------+-----------------------------------------------------
+   coefvar |     0.12      0.148273       0.080862   0.462057    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  =  4.974
+-----------------------------
+G*(rho) and G*(1) are not available.
+There are fixed effects at the cluster or subcluster level.
+
+.  
+.         mata:tabthree[4,1] = $N_Clusters
+
+.         mata:tabthree[4,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[4,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[4,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[4,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[4,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[4,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[4,8] = clustsum[6,1] // Cluster Variability -  max 
+
+.         
+.         
+. * state x year
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(uf year)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+.                 
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+>  cluster(temp_indexa) rho(0.5) jack     
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by temp_indexa.
+There are 1507 observations within 124 temp_indexa clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.074584   2.8476   0.0052    0.064755    0.360024
+   CV3 |   0.212389   0.106468   1.9949   0.0483    0.001642    0.423137
+  CV3J |   0.212389   0.106463   1.9950   0.0483    0.001652    0.423127
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |     1.00      0.270757       0.000015   0.159512    
+        q1 |     3.00      1.436416       0.000831   0.211288    
+    median |     6.00      3.027535       0.003295   0.212848    
+      mean |    12.15      5.612903       0.008065   0.212481    
+        q3 |    15.50      7.162860       0.011575   0.215920    
+       max |    71.00     33.627224       0.047965   0.236202    
+-----------+-----------------------------------------------------
+   coefvar |     1.15      1.146201       1.282076   0.045361    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  = 47.140
+G*(.5) = 23.833
+G*(1)  = 18.217
+-----------------------------
+
+.  
+.         mata:tabthree[5,1] = $N_Clusters
+
+.         mata:tabthree[5,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[5,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[5,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[5,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[5,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[5,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[5,8] = clustsum[6,1] // Cluster Variability -  max        
+
+.         
+. cap drop temp_indexa    
+
+.         
+. * state x year
+. /*determine number of clusters*/
+. macro drop N_Clusters
+
+. qui egen temp_indexa = group(micro_region year)
+
+. qui summ temp_indexa 
+
+. global N_Clusters = r(max)
+
+.                 
+. /*one way CV1 and CV3 */
+. summclust moderate_aligned, ///
+> yvar(relief_mv_bm) ///
+> xvar( low_aligned moderate_notaligned severe_aligned severe_notaligned mv_bm_party_P1 a_mv_bm_party_P1) ///
+> fevar(cod_mun year) ///
+>  cluster(temp_indexa) rho(0.5) jack     
+
+
+SUMMCLUST - MacKinnon, Nielsen, and Webb
+ 
+Cluster summary statistics for moderate_aligned when clustered by temp_indexa.
+There are 1507 observations within 1026 temp_indexa clusters.
+
+Regression Output
+
+  s.e. |      Coeff   Sd. Err.   t-stat  P value    CI-lower    CI-upper
+-------+----------------------------------------------------------------
+   CV1 |   0.212389   0.049960   4.2512   0.0000    0.114354    0.310425
+   CV3 |   0.212389   0.065786   3.2285   0.0013    0.083299    0.341480
+  CV3J |   0.212389   0.065782   3.2287   0.0013    0.083306    0.341473
+------------------------------------------------------------------------
+
+Cluster Variability
+
+ Statistic |       Ng      Leverage     Partial L.  beta no g    
+-----------+-----------------------------------------------------
+       min |     1.00      0.205457       0.000000   0.192521    
+        q1 |     1.00      0.504144       0.000088   0.212189    
+    median |     1.00      0.507409       0.000382   0.212456    
+      mean |     1.47      0.678363       0.000975   0.212411    
+        q3 |     2.00      0.847168       0.001158   0.212962    
+       max |     7.00      3.575275       0.013571   0.220906    
+-----------+-----------------------------------------------------
+   coefvar |     0.61      0.617386       1.645675   0.009678    
+ 
+Effective Number of Clusters
+-----------------------------
+G*(0)  = 276.878
+G*(.5) = 179.148
+G*(1)  = 111.267
+-----------------------------
+
+.  
+.         mata:tabthree[6,1] = $N_Clusters
+
+.         mata:tabthree[6,2] = gstarzero // Effective Number of Clusters: G*(0)
+
+.         mata:tabthree[6,3] = clustsum[4,1] // Cluster Variability - mean
+
+.         mata:tabthree[6,4] = clustsum[1,1] // Cluster Variability - min
+
+.         mata:tabthree[6,5] = clustsum[2,1] // Cluster Variability -  q1
+
+.         mata:tabthree[6,6] = clustsum[3,1] // Cluster Variability -  median
+
+.         mata:tabthree[6,7] = clustsum[5,1] // Cluster Variability -  q3
+
+.         mata:tabthree[6,8] = clustsum[6,1] // Cluster Variability -  max
+
+.         
+. cap drop temp_indexa
+
+.         
+. mata: tabthree
+                 1             2             3             4             5             6             7             8
+    +-----------------------------------------------------------------------------------------------------------------+
+  1 |          685   173.8398374           2.2             2             2             2             2             5  |
+  2 |          358    114.332553   4.209497207             2             2             3             5            21  |
+  3 |           26   10.89279896   57.96153846             2            16            32            82           256  |
+  4 |            5   4.973981431         301.4           254           290           295           320           348  |
+  5 |          124    47.1400004   12.15322581             1             3             6          15.5            71  |
+  6 |         1026   276.8776345   1.468810916             1             1             1             2             7  |
+    +-----------------------------------------------------------------------------------------------------------------+
+
+. 
+. /*
+> after running "mata: tabthree"
+> one should manually convert the table in the console to a costumize table
+> */
+. 
+. cap log close

@@ -1,0 +1,1045 @@
+------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/f.cavalcanti/Documents/Drought-reliefs-and-Partisanship/analysis/output\descriptive_statistics\_ta
+> ble_summary_statistics_for_cluster_tstatistics_bp.txt
+  log type:  text
+ opened on:  13 Apr 2023, 16:43:58
+
+. 
+. timer clear 1
+
+. timer on 1 
+
+. 
+. * generate matrix of results
+. mata: tabone = J(6,21,.)
+
+. 
+. * name first rows
+. *mata:tabone[1,2] = "None: HC"
+. *mata:tabone[1,4] = "Municipality"
+. *mata:tabone[1,7] = "Microregion"
+. *mata:tabone[1,10] = "State:"
+. *mata:tabone[1,13] = "Year"
+. *mata:tabone[1,16] = "State & year: two-way"
+. *mata:tabone[1,19] = "Microregion & year: two-way"
+. 
+. * name first rows
+. *mata:tabone[2,1] = "Diff"
+. *mata:tabone[2,2] = "t-statistic"
+. *mata:tabone[2,3] = "P value, N(0, 1)"
+. *mata:tabone[2,4] = "t-statistic"
+. *mata:tabone[2,5] = "P value, t(764)"
+. *mata:tabone[2,6] = "P value, WCR"
+. *mata:tabone[2,7] = "t-statistic"
+. *mata:tabone[2,8] = "P value, t(764"
+. *mata:tabone[2,9] = "P value, WCR"
+. *mata:tabone[2,10] = "t-statistic"
+. *mata:tabone[2,11] = "P value, t(764"
+. *mata:tabone[2,12] = "P value, WCR"
+. *mata:tabone[2,13] = "t-statistic"
+. *mata:tabone[2,14] = "P value, t(764"
+. *mata:tabone[2,15] = "P value, WCR"
+. *mata:tabone[2,16] = "t-statistic"
+. *mata:tabone[2,17] = "P value, t(14)"
+. *mata:tabone[2,18] = "P value, WCR (state)"
+. *mata:tabone[2,19] = "t-statistic"
+. *mata:tabone[2,20] = "P value, t(8)"
+. *mata:tabone[2,21] = "P value, WCR (year)"
+. 
+. ******************************************************* 
+. ** Build column of results regarding:
+. ** low_aligned = low_notaligned
+. ******************************************************
+.         qui reg relief_mv_bp ///
+>         mv_bp_party_P1 a_mv_bp_party_P1 ///
+>         low_aligned /*low_notaligned*/ ///
+>         moderate_aligned moderate_notaligned ///
+>         severe_aligned severe_notaligned ///
+>         d_year_* d_munic_* ///
+>         , robust nocons
+
+.         
+.         * Cluster: None - HC1   
+.         local beta = _b[low_aligned]
+
+.         local beta : display %9.3f `beta'
+
+.         mata:tabone[3,1] = `beta'
+
+.         
+.         test low_aligned = 0
+
+ ( 1)  low_aligned = 0
+
+       F(  1,   800) =    2.30
+            Prob > F =    0.1300
+
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,2] = `t' // t-statistic
+
+.                 mata:tabone[3,3] = `p' // P value, N(0, 1)
+
+.                 
+.         * cod_mun: CV1
+.         waldtest low_aligned = 0, cluster(cod_mun) noci
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wald test, clustering by cod_mun:
+  low_aligned = 0
+
+                          t(583) =     1.2075
+                        Prob>|t| =     0.2277
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,4] = `t'  // t-statistic
+
+.                 mata:tabone[3,5] = `p' // P value, t(?)
+
+.                 
+.         * cod_mun: CV1
+.         * WCR
+.         boottest low_aligned = 0, cluster(cod_mun) noci weight(webb)  
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by cod_mun, bootstrap clustering by cod_mun, Web
+> b weights:
+  low_aligned = 0
+
+                          t(583) =     1.2075
+                        Prob>|t| =     0.1141
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,6] = `p' // P value, WCR          
+
+.                 
+.         * micro_region: CV1
+.         waldtest low_aligned = 0, cluster(micro_region) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wald test, clustering by micro_region:
+  low_aligned = 0
+
+                          t(311) =     1.0933
+                        Prob>|t| =     0.2751
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,7] = `t'  // t-statistic
+
+.                 mata:tabone[3,8] = `p' // P value, t(?)
+
+.                 
+.         * micro_region: CV1 
+.         * WCR
+.         boottest low_aligned = 0, cluster(micro_region) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by micro_region, bootstrap clustering by micro_r
+> egion, Rademacher weights:
+  low_aligned = 0
+
+                          t(311) =     1.0933
+                        Prob>|t| =     0.1471
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,9] = `p' // P value, WCR
+
+.                 
+.         * uf: CV1
+.         waldtest low_aligned = 0, cluster(uf) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wald test, clustering by uf:
+  low_aligned = 0
+
+                           t(24) =     1.1325
+                        Prob>|t| =     0.2686
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,10] = `t'  // t-statistic
+
+.                 mata:tabone[3,11] = `p' // P value, t(?)                
+
+.         
+.         * uf: CV1 
+.         * WCR
+.         boottest low_aligned = 0, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  low_aligned = 0
+
+                           t(24) =     1.1325
+                        Prob>|t| =     0.2332
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,12] = `p' // P value, WCR
+
+.                 
+.         * year: CV1
+.         waldtest low_aligned = 0, cluster(year) noci
+
+Overriding estimator's cluster/robust settings with cluster(year)
+
+Wald test, clustering by year:
+  low_aligned = 0
+
+                            t(4) =     2.0885
+                        Prob>|t| =     0.1050
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,13] = `t'  // t-statistic
+
+.                 mata:tabone[3,14] = `p' // P value, t(?)                
+
+.                 
+.         * year: CV1 
+.         * WCR   
+.         boottest low_aligned = 0, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  low_aligned = 0
+
+                           t(24) =     1.1325
+                        Prob>|t| =     0.2292
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,15] = `p'         
+
+.         
+.         * uf and year: two-way CV1
+.         waldtest low_aligned = 0, cluster(uf year) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Wald test, clustering by uf year:
+  low_aligned = 0
+
+                            t(4) =     1.3157
+                        Prob>|t| =     0.2586
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,16] = `t'  // t-statistic
+
+.                 mata:tabone[3,17] = `p' // P value, t(?)
+
+.                         
+.         * uf and year: two-way CV1
+.         * WCR
+.         boottest low_aligned = 0, cluster(uf year) bootcluster(uf) noci  
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf year, bootstrap clustering by uf, Rademach
+> er weights:
+  low_aligned = 0
+
+                            t(4) =     1.3157
+                        Prob>|t| =     0.2402
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,18] = `p' // P value, WCR (year)
+
+. 
+.         * micro_region and year: two-way CV1
+.         waldtest low_aligned = 0, cluster(micro_region year) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Wald test, clustering by micro_region year:
+  low_aligned = 0
+
+                            t(4) =     1.3359
+                        Prob>|t| =     0.2525
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,19] = `t' // t-statistic
+
+.                 mata:tabone[3,20] = `p' // P value, t(?)
+
+.         
+.         * micro_region and year: two-way CV1
+.         ** P value, WCR (micro_region)
+.         boottest low_aligned = 0, cluster(micro_region year) bootcluster(year) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Warning: with 5 bootstrap clusters, the number of replications, 999, exceeds the universe of Rademacher draws, 2^5 = 32.
+>  Sampling each once.
+Consider Webb weights instead, using weight(webb).
+
+Wild bootstrap-t, null imposed, 32 replications, Wald test, clustering by micro_region year, bootstrap clustering by yea
+> r, Rademacher weights:
+  low_aligned = 0
+
+                            t(4) =     1.3359
+                        Prob>|t| =     0.0625
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[3,21] = `p' // P value, WCR (micro_region)
+
+. 
+. 
+. ******************************************************* 
+. ** Build column of results regarding:
+. ** moderate_aligned = moderate_notaligned
+. ******************************************************
+.         qui reg relief_mv_bp ///
+>         mv_bp_party_P1 a_mv_bp_party_P1 ///
+>         low_aligned /*low_notaligned*/ ///
+>         moderate_aligned moderate_notaligned ///
+>         severe_aligned severe_notaligned ///
+>         d_year_* d_munic_* ///
+>         , robust nocons
+
+.         
+.         * Cluster: None - HC1   
+.         local beta = _b[moderate_aligned] - _b[moderate_notaligned]
+
+.         local beta : display %9.3f `beta'
+
+.         mata:tabone[4,1] = `beta'
+
+.         
+.         test moderate_aligned = moderate_notaligned
+
+ ( 1)  moderate_aligned - moderate_notaligned = 0
+
+       F(  1,   800) =    0.06
+            Prob > F =    0.8114
+
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,2] = `t' // t-statistic
+
+.                 mata:tabone[4,3] = `p' // P value, N(0, 1)
+
+.                 
+.         * cod_mun: CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(cod_mun) noci
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wald test, clustering by cod_mun:
+  moderate_aligned = moderate_notaligned
+
+                          t(583) =    -0.1842
+                        Prob>|t| =     0.8539
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,4] = `t'  // t-statistic
+
+.                 mata:tabone[4,5] = `p' // P value, t(?)
+
+.                 
+.         * cod_mun: CV1
+.         * WCR
+.         boottest moderate_aligned = moderate_notaligned, cluster(cod_mun) noci weight(webb)  
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by cod_mun, bootstrap clustering by cod_mun, Web
+> b weights:
+  moderate_aligned = moderate_notaligned
+
+                          t(583) =    -0.1842
+                        Prob>|t| =     0.8288
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,6] = `p' // P value, WCR          
+
+.                 
+.         * micro_region: CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(micro_region) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wald test, clustering by micro_region:
+  moderate_aligned = moderate_notaligned
+
+                          t(311) =    -0.1902
+                        Prob>|t| =     0.8492
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,7] = `t'  // t-statistic
+
+.                 mata:tabone[4,8] = `p' // P value, t(?)
+
+.                 
+.         * micro_region: CV1 
+.         * WCR
+.         boottest moderate_aligned = moderate_notaligned, cluster(micro_region) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by micro_region, bootstrap clustering by micro_r
+> egion, Rademacher weights:
+  moderate_aligned = moderate_notaligned
+
+                          t(311) =    -0.1902
+                        Prob>|t| =     0.7928
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,9] = `p' // P value, WCR
+
+.                 
+.         * uf: CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(uf) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wald test, clustering by uf:
+  moderate_aligned = moderate_notaligned
+
+                           t(24) =    -0.2620
+                        Prob>|t| =     0.7956
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,10] = `t'  // t-statistic
+
+.                 mata:tabone[4,11] = `p' // P value, t(?)                
+
+.         
+.         * uf: CV1 
+.         * WCR
+.         boottest moderate_aligned = moderate_notaligned, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  moderate_aligned = moderate_notaligned
+
+                           t(24) =    -0.2620
+                        Prob>|t| =     0.8108
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,12] = `p' // P value, WCR
+
+.                 
+.         * year: CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(year) noci
+
+Overriding estimator's cluster/robust settings with cluster(year)
+
+Wald test, clustering by year:
+  moderate_aligned = moderate_notaligned
+
+                            t(4) =    -0.1879
+                        Prob>|t| =     0.8601
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,13] = `t'  // t-statistic
+
+.                 mata:tabone[4,14] = `p' // P value, t(?)                
+
+.                 
+.         * year: CV1 
+.         * WCR   
+.         boottest moderate_aligned = moderate_notaligned, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  moderate_aligned = moderate_notaligned
+
+                           t(24) =    -0.2620
+                        Prob>|t| =     0.8038
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,15] = `p'         
+
+.         
+.         * uf and year: two-way CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(uf year) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Wald test, clustering by uf year:
+  moderate_aligned = moderate_notaligned
+
+                            t(4) =    -0.1930
+                        Prob>|t| =     0.8564
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,16] = `t'  // t-statistic
+
+.                 mata:tabone[4,17] = `p' // P value, t(?)
+
+.                         
+.         * uf and year: two-way CV1
+.         * WCR
+.         boottest moderate_aligned = moderate_notaligned, cluster(uf year) bootcluster(uf) noci  
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Warning: 115 replications returned an infeasible test statistic and were deleted from the bootstrap distribution.
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf year, bootstrap clustering by uf, Rademach
+> er weights:
+  moderate_aligned = moderate_notaligned
+
+                            t(4) =    -0.1930
+                        Prob>|t| =     0.8054
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,18] = `p' // P value, WCR (year)
+
+. 
+.         * micro_region and year: two-way CV1
+.         waldtest moderate_aligned = moderate_notaligned, cluster(micro_region year) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Wald test, clustering by micro_region year:
+  moderate_aligned = moderate_notaligned
+
+                            t(4) =    -0.1607
+                        Prob>|t| =     0.8801
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,19] = `t' // t-statistic
+
+.                 mata:tabone[4,20] = `p' // P value, t(?)
+
+.         
+.         * micro_region and year: two-way CV1
+.         ** P value, WCR (micro_region)
+.         boottest moderate_aligned = moderate_notaligned, cluster(micro_region year) bootcluster(year) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Warning: with 5 bootstrap clusters, the number of replications, 999, exceeds the universe of Rademacher draws, 2^5 = 32.
+>  Sampling each once.
+Consider Webb weights instead, using weight(webb).
+
+Wild bootstrap-t, null imposed, 32 replications, Wald test, clustering by micro_region year, bootstrap clustering by yea
+> r, Rademacher weights:
+  moderate_aligned = moderate_notaligned
+
+                            t(4) =    -0.1607
+                        Prob>|t| =     0.8125
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[4,21] = `p' // P value, WCR (micro_region)
+
+.                 
+. 
+. ******************************************************* 
+. ** Build column of results regarding:
+. ** severe_aligned = severe_notaligned
+. ******************************************************
+.         qui reg relief_mv_bp ///
+>         mv_bp_party_P1 a_mv_bp_party_P1 ///
+>         low_aligned /*low_notaligned*/ ///
+>         moderate_aligned moderate_notaligned ///
+>         severe_aligned severe_notaligned ///
+>         d_year_* d_munic_* ///
+>         , robust nocons
+
+.         
+.         * Cluster: None - HC1   
+.         local beta = _b[severe_aligned] - _b[severe_notaligned]
+
+.         local beta : display %9.3f `beta'
+
+.         mata:tabone[5,1] = `beta'
+
+.         
+.         test severe_aligned = severe_notaligned
+
+ ( 1)  severe_aligned - severe_notaligned = 0
+
+       F(  1,   800) =    0.05
+            Prob > F =    0.8282
+
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,2] = `t' // t-statistic
+
+.                 mata:tabone[5,3] = `p' // P value, N(0, 1)
+
+.                 
+.         * cod_mun: CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(cod_mun) noci
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wald test, clustering by cod_mun:
+  severe_aligned = severe_notaligned
+
+                          t(583) =     0.1706
+                        Prob>|t| =     0.8646
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,4] = `t'  // t-statistic
+
+.                 mata:tabone[5,5] = `p' // P value, t(?)
+
+.                 
+.         * cod_mun: CV1
+.         * WCR
+.         boottest severe_aligned = severe_notaligned, cluster(cod_mun) noci weight(webb)  
+
+Overriding estimator's cluster/robust settings with cluster(cod_mun)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by cod_mun, bootstrap clustering by cod_mun, Web
+> b weights:
+  severe_aligned = severe_notaligned
+
+                          t(583) =     0.1706
+                        Prob>|t| =     0.8108
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,6] = `p' // P value, WCR          
+
+.                 
+.         * micro_region: CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(micro_region) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wald test, clustering by micro_region:
+  severe_aligned = severe_notaligned
+
+                          t(311) =     0.1660
+                        Prob>|t| =     0.8682
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,7] = `t'  // t-statistic
+
+.                 mata:tabone[5,8] = `p' // P value, t(?)
+
+.                 
+.         * micro_region: CV1 
+.         * WCR
+.         boottest severe_aligned = severe_notaligned, cluster(micro_region) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by micro_region, bootstrap clustering by micro_r
+> egion, Rademacher weights:
+  severe_aligned = severe_notaligned
+
+                          t(311) =     0.1660
+                        Prob>|t| =     0.8078
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,9] = `p' // P value, WCR
+
+.                 
+.         * uf: CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(uf) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wald test, clustering by uf:
+  severe_aligned = severe_notaligned
+
+                           t(24) =     0.1728
+                        Prob>|t| =     0.8642
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,10] = `t'  // t-statistic
+
+.                 mata:tabone[5,11] = `p' // P value, t(?)                
+
+.         
+.         * uf: CV1 
+.         * WCR
+.         boottest severe_aligned = severe_notaligned, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  severe_aligned = severe_notaligned
+
+                           t(24) =     0.1728
+                        Prob>|t| =     0.8498
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,12] = `p' // P value, WCR
+
+.                 
+.         * year: CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(year) noci
+
+Overriding estimator's cluster/robust settings with cluster(year)
+
+Wald test, clustering by year:
+  severe_aligned = severe_notaligned
+
+                            t(4) =     0.2477
+                        Prob>|t| =     0.8166
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,13] = `t'  // t-statistic
+
+.                 mata:tabone[5,14] = `p' // P value, t(?)                
+
+.                 
+.         * year: CV1 
+.         * WCR   
+.         boottest severe_aligned = severe_notaligned, cluster(uf) noci weight(webb) 
+
+Overriding estimator's cluster/robust settings with cluster(uf)
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf, bootstrap clustering by uf, Webb weights:
+  severe_aligned = severe_notaligned
+
+                           t(24) =     0.1728
+                        Prob>|t| =     0.8488
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,15] = `p'         
+
+.         
+.         * uf and year: two-way CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(uf year) noci
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Wald test, clustering by uf year:
+  severe_aligned = severe_notaligned
+
+                            t(4) =     0.1924
+                        Prob>|t| =     0.8568
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,16] = `t'  // t-statistic
+
+.                 mata:tabone[5,17] = `p' // P value, t(?)
+
+.                         
+.         * uf and year: two-way CV1
+.         * WCR
+.         boottest severe_aligned = severe_notaligned, cluster(uf year) bootcluster(uf) noci  
+
+Overriding estimator's cluster/robust settings with cluster(uf year)
+
+Warning: 8 replications returned an infeasible test statistic and were deleted from the bootstrap distribution.
+
+Wild bootstrap-t, null imposed, 999 replications, Wald test, clustering by uf year, bootstrap clustering by uf, Rademach
+> er weights:
+  severe_aligned = severe_notaligned
+
+                            t(4) =     0.1924
+                        Prob>|t| =     0.7790
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,18] = `p' // P value, WCR (year)
+
+. 
+.         * micro_region and year: two-way CV1
+.         waldtest severe_aligned = severe_notaligned, cluster(micro_region year) noci
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Wald test, clustering by micro_region year:
+  severe_aligned = severe_notaligned
+
+                            t(4) =     0.1829
+                        Prob>|t| =     0.8638
+
+.         
+.                 local t = sqrt(r(F))
+
+.                 local t : display %9.3f `t'
+
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,19] = `t' // t-statistic
+
+.                 mata:tabone[5,20] = `p' // P value, t(?)
+
+.         
+.         * micro_region and year: two-way CV1
+.         ** P value, WCR (micro_region)
+.         boottest severe_aligned = severe_notaligned, cluster(micro_region year) bootcluster(year) noci  
+
+Overriding estimator's cluster/robust settings with cluster(micro_region year)
+
+Warning: with 5 bootstrap clusters, the number of replications, 999, exceeds the universe of Rademacher draws, 2^5 = 32.
+>  Sampling each once.
+Consider Webb weights instead, using weight(webb).
+
+Wild bootstrap-t, null imposed, 32 replications, Wald test, clustering by micro_region year, bootstrap clustering by yea
+> r, Rademacher weights:
+  severe_aligned = severe_notaligned
+
+                            t(4) =     0.1829
+                        Prob>|t| =     0.8750
+
+.         
+.                 local p = r(p)
+
+.                 local p : display %9.3f `p'
+
+.                 mata:tabone[5,21] = `p' // P value, WCR (micro_region)          
+
+. 
+.                 
+. mata: tabone'
+            1       2       3       4       5       6
+     +-------------------------------------------------+
+   1 |      .       .    .068   -.014    .016       .  |
+   2 |      .       .   1.516    .239    .217       .  |
+   3 |      .       .     .13    .811    .828       .  |
+   4 |      .       .   1.207    .184    .171       .  |
+   5 |      .       .    .228    .854    .865       .  |
+   6 |      .       .    .114    .829    .811       .  |
+   7 |      .       .   1.093     .19    .166       .  |
+   8 |      .       .    .275    .849    .868       .  |
+   9 |      .       .    .147    .793    .808       .  |
+  10 |      .       .   1.132    .262    .173       .  |
+  11 |      .       .    .269    .796    .864       .  |
+  12 |      .       .    .233    .811     .85       .  |
+  13 |      .       .   2.088    .188    .248       .  |
+  14 |      .       .    .105     .86    .817       .  |
+  15 |      .       .    .229    .804    .849       .  |
+  16 |      .       .   1.316    .193    .192       .  |
+  17 |      .       .    .259    .856    .857       .  |
+  18 |      .       .     .24    .805    .779       .  |
+  19 |      .       .   1.336    .161    .183       .  |
+  20 |      .       .    .253     .88    .864       .  |
+  21 |      .       .    .063    .813    .875       .  |
+     +-------------------------------------------------+
+
+. /*
+> after running "mata: tabone'"
+> one should manually convert the table in the console to a costumize table
+> */
+. 
+. cap log close
