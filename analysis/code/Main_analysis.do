@@ -28,8 +28,18 @@ global outdir				"${ROOT}/analysis/output"
 global codedir    			"${ROOT}/analysis/code"
 global tmp					"${ROOT}/analysis/tmp"
 
+* install packages for replication
+ssc install dc // for DCdensity command
+net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/master/src/") // for reghdfe
+net describe st0366, from(http://www.stata-journal.com/software/sj14-4)
+net install st0366, replace // for rdbwselect
+
+* make sure there are output folders
 cap mkdir $tmp
 cap mkdir $outdir
+cap mkdir "$outdir\graphs"
+cap mkdir "$outdir\descriptive_statistics"
+cap mkdir "$outdir\regressions"
 
 ********************************
 *** CALL DATABASE			 ***
@@ -362,7 +372,7 @@ preserve
 *** 5 Data Clustering
 **************************************************************
 
-	* Table OA6: Summary statistics for cluster heterogeneity
+* Table OA6: Summary statistics for cluster heterogeneity
 	preserve
 	do "$codedir/_generate_variables_bm.do"
 	do "$codedir/_table_summary_statistics_for_cluster_heterogeneity_bm.do"
@@ -374,8 +384,8 @@ preserve
 	restore
 	
 
-*Table OA7: Difference in the probability of getting aid-relief across aligned and misaligned municipalities: 
-* t-statistics and p-values for alternative clustering
+* Table OA7: Difference in the probability of getting aid-relief across aligned and misaligned municipalities: 
+	* t-statistics and p-values for alternative clustering
 
 	preserve
 	do "$codedir/_generate_variables_bm.do"
