@@ -1,7 +1,7 @@
 /* data and variables */
 
 * make sure there is output folder
-cap mkdir $"outdir\descriptive_statistics"
+cap mkdir "$outdir\descriptive_statistics"
 
 * preserve
 preserve
