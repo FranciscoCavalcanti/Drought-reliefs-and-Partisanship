@@ -67,7 +67,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bm_party	
+	cap sort mv_bm_party	
 	
 	twoway (scatter mean_relief vote_bins if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(solid) lcolor(black))	/*
@@ -81,7 +81,7 @@
 		*/ 	title("") 	/*
 		*/ 	subtitle("During two years before mayoral elections") 	/*
 		*/ 	ytitle("") /*
-		*/	yscale(axis(1) range() lstyle(none) )	/* how y axis looks
+		*/	yscale(axis(1) range(0.0 0.35) lstyle(none) )	/* how y axis looks
 		*/	ylabel(#8, labsize(small)) 	/*
 		*/ 	xtitle("margin of victory")	/*
 		*/	xlabel(#6,  labsize(small)) 	/*

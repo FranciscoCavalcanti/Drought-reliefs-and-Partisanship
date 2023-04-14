@@ -1,28 +1,29 @@
-/* -----------------------------------------------------------------------------
------------------------------------------------------------------------------ */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Analysis for: Drought-reliefs and Partisanship ///  
+/// Boffa-Cavalcanti-Fons-Rosen-Piolatto (Oxford Bulletin of Economics and Statistics) 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-*version 16.1 //always set the stata version being used
+clear all
+discard
+set more off
+capture log close
+version 16.1
 
-// caminhos (check your username by typing "di c(username)" in Stata)" ----
-global ROOT "E:/Dropbox/__Research/Amedeo Piolatto/political_alignment_and_droughts"
-global DATABASE "E:/Dropbox/__Research/Amedeo Piolatto/political_alignment_and_droughts"
+* set path of folder
+* for instance:
+global ROOT "C:/Users/DELL/Documents/GitHub/Drought-reliefs-and-Partisanship"
 
-// check your username by typing "di c(username)" in Stata) ----
-if "`c(username)'" == "f.cavalcanti"   {
-    global ROOT "C:/Users/f.cavalcanti/Documents/Drought-reliefs-and-Partisanship"
-	global DATABASE "C:/Users/f.cavalcanti/Dropbox/political_alignment_and_droughts"
-
-}
-else if "`c(username)'" == "DELL"   {
-    global ROOT "C:/Users/DELL/Documents/GitHub/Drought-reliefs-and-Partisanship"
-	global DATABASE "D:/Dropbox/political_alignment_and_droughts"
-}
-
-global inpdir				"$DATABASE/build/workfile/output"
-global inpdir_analysis		"$ROOT/analysis/input"   
+* make sure there are output folders
+global inpdir				"$ROOT/data"
 global outdir				"$ROOT/analysis/output"
 global codedir    			"$ROOT/analysis/code"
 global tmp					"$ROOT/analysis/tmp"
+
+cap mkdir "$tmp"
+cap mkdir "$outdir"
+cap mkdir "$outdir/graphs"
+cap mkdir "$outdir/descriptive_statistics"
+cap mkdir "$outdir/regressions"
 
 *******************************************************************************
 * install packages for replication
@@ -35,27 +36,26 @@ ssc install boottest
 *******************************************************************************
 * install packages for replication - MANNUALLY
 *******************************************************************************
-// Package 1
-// Comment: make sure to have "DCdensity.ado" Put this file in your ado directory.  To find out where this is, issue-sysdir- at the Stata prompt. 
-// link for "DCdensity": https://github.com/iphone7725/DCdensity
+// User-Written SSC Package 01
+// Comment: make sure to have "DCdensity.ado". 
+// Put this file in your ado directory.  
+// To find out where this is, issue-sysdir- at the Stata prompt. 
+// link for "DCdensity" command: https://github.com/iphone7725/DCdensity
 
-// Package 2
-// Comment: make sure to have "summclust.ado" Put this file in your ado directory.  To find out where this is, issue-sysdir- at the Stata prompt. 
-// link for "summclust": https://github.com/mattdwebb/summclust
-
-* make sure there are output folders
-cap mkdir "$tmp"
-cap mkdir "$outdir"
-cap mkdir "$outdir/graphs"
-cap mkdir "$outdir/descriptive_statistics"
-cap mkdir "$outdir/regressions"
+// User-Written SSC Package 02
+// Comment: make sure to have "summclust.ado". //
+// Put this file in your ado directory.  
+// To find out where this is, issue-sysdir- at the Stata prompt. 
+// link for "summclust" command: https://github.com/mattdwebb/summclust
 
 ********************************
 *** CALL DATABASE			 ***
 ********************************
-use "$inpdir/database_revise_resubmit.dta", clear
-	
+use "$inpdir/database.dta", clear
+
+
 **************************************************************
+*** Results referring to the section:
 *** 3.1 Our variables 
 **************************************************************
 
@@ -66,6 +66,7 @@ use "$inpdir/database_revise_resubmit.dta", clear
 	restore	
 
 **************************************************************
+*** Results referring to the section:
 *** 3.2 Estimation strategy and results    
 **************************************************************
 
@@ -218,6 +219,7 @@ use "$inpdir/database_revise_resubmit.dta", clear
 **************************************************************
 
 **************************************************************
+*** Results referring to the section:
 *** 1 Assignment of aid relief
 **************************************************************
 
@@ -249,6 +251,7 @@ use "$inpdir/database_revise_resubmit.dta", clear
 	restore
 
 **************************************************************
+*** Results referring to the section:
 *** 3 The Standard Precipitation Index (SPI)
 **************************************************************
 
@@ -344,6 +347,7 @@ use "$inpdir/database_revise_resubmit.dta", clear
 	* in /build/8_cru/code/Preamble.do
 
 **************************************************************
+*** Results referring to the section:
 *** 4 Alternative SPEI thresholds
 **************************************************************
 
@@ -378,6 +382,7 @@ preserve
 	restore
 
 **************************************************************
+*** Results referring to the section:
 *** 5 Data Clustering
 **************************************************************
 
@@ -406,8 +411,8 @@ preserve
 	do "$codedir/_table_summary_statistics_for_cluster_tstatistics_bp.do"
 	restore
 	
-	
 **************************************************************
+*** Results referring to the section:
 *** 6 Validity for non-close elections
 **************************************************************
 
@@ -425,6 +430,7 @@ preserve
 	restore	
 
 **************************************************************
+*** Results referring to the section:
 *** 7 Urban versus Rural Municipalities
 **************************************************************
 

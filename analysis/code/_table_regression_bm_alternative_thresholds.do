@@ -121,7 +121,7 @@ sev_alt1_aligned sev_alt1_notaligned sev_alt2_aligned  sev_alt2_notaligned ///
 d_year_* ///
 , cluster(cod_mun) nocons
 
-	test low_alt_aligned=0 // ALERT, NEW TEST!!
+	test low_alt_aligned=0 
 	
 	local Fstatistics_low = r(F)
 	local Fstatistics_low : display %9.3fc `Fstatistics_low'
