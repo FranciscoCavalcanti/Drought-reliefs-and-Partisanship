@@ -94,7 +94,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_rural_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -141,7 +141,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_drought_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -188,7 +188,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_water_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -236,7 +236,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_television_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -283,7 +283,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_radio_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -330,7 +330,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_energy_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -377,7 +377,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_log_populacao_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -424,7 +424,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_renda_media_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -471,7 +471,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_escolaridade_media_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -518,7 +518,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_jovem_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -565,7 +565,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_maior_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -612,7 +612,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_agricultura_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -659,7 +659,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_industria_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -706,7 +706,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_comercio_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -753,7 +753,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_transporte_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -800,7 +800,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_servico_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -847,7 +847,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_adm_publica_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -894,7 +894,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_ocupacao_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -941,7 +941,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_graduado_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -988,7 +988,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_pobreza_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1035,7 +1035,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_race_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1082,7 +1082,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_gender_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1129,7 +1129,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_evangelical_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1176,7 +1176,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_taxa_high_school_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1223,7 +1223,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_distance_river_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1271,7 +1271,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bp_party	
+	cap sort mv_bp_party_P1	
 	
 	twoway (scatter mean_share_gdp_agriculture_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
@@ -1311,4 +1311,5 @@
 	graph save Graph "$tmp\_graph_rdd_bp_balance_observables.gph", replace
 	graph use "$tmp\_graph_rdd_bp_balance_observables.gph"
 	graph export "$outdir\graphs\_graph_rdd_bp_balance_observables.png", replace
-	graph export "$outdir\graphs\_graph_rdd_bp_balance_observables.tif", as(tif) replace	
+	graph export "$outdir\graphs\_graph_rdd_bp_balance_observables.eps", as(eps) replace
+

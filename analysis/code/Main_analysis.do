@@ -96,6 +96,7 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_rdd_drought_ignored.gph"
 	graph export "$outdir\graphs\_graph_rdd_drought_ignored.png", replace
+	graph export "$outdir\graphs\_graph_rdd_drought_ignored.eps", as(eps) replace
 
 * Figure 3: Share of municipalities that obtained aid-relief: difference between aligned and non-aligned municipalities
 
@@ -121,6 +122,8 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_ratio.gph"
 	graph export "$outdir\graphs\_graph_ratio.png", replace	
+	graph export "$outdir\graphs\_graph_ratio.eps", as(eps) replace
+
 	
 * Figure 4: Kernel plots of the likelihood of receiving transfers
 
@@ -147,6 +150,8 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_kernel.gph"
 	graph export "$outdir\graphs\_graph_kernel.png", replace	
+	graph export "$outdir\graphs\_graph_kernel.eps", as(eps) replace
+
 
 * Figure 5: Alignment impact on obtaining aid relief for SPEI ranges
 
@@ -172,6 +177,7 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_range_spei.gph"
 	graph export "$outdir\graphs\_graph_range_spei.png", replace	
+	graph export "$outdir\graphs\_graph_range_spei.eps", as(eps) replace
 
 
 * Table 2: Impact of alignment on the assignment of aid relief
@@ -212,6 +218,8 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_rdd.gph"
 	graph export "$outdir\graphs\_graph_rdd.png", replace
+	graph export "$outdir\graphs\_graph_rdd.eps", as(eps) replace
+
 	
 
 **************************************************************
@@ -278,7 +286,8 @@ use "$inpdir/database.dta", clear
 	*/	saving("$tmp\_graph_ratio_spi.gph", replace) 
 	
 	graph use "$tmp\_graph_ratio_spi.gph"
-	graph export "$outdir\graphs\_graph_ratio_spi.png", replace		
+	graph export "$outdir\graphs\_graph_ratio_spi.png", replace
+	graph export "$outdir\graphs\_graph_ratio_spi.eps", as(eps) replace		
 	
 	
 * Figure OA6: Alignment impact on obtaining aid relief for SPI ranges.
@@ -305,6 +314,8 @@ use "$inpdir/database.dta", clear
 	
 	graph use "$tmp\_graph_range_spi.gph"
 	graph export "$outdir\graphs\_graph_range_spi.png", replace	
+	graph export "$outdir\graphs\_graph_range_spi.eps", as(eps) replace		
+
 	
 	
 * Table OA1: Number of observations assigned to each aridity category based on SPI or SPEI

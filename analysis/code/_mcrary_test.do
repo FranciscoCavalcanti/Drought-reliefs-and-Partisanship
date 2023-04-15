@@ -8,7 +8,7 @@ cap mkdir "$outdir\graphs"
 ****************************
 * presidential elections
 ****************************
-DCdensity mv_bp_wing, breakpoint(0) generate(Xj3 Yj3 r03 fhat3 se_fhat3)
+DCdensity mv_bp_party_P1, breakpoint(0) generate(Xj3 Yj3 r03 fhat3 se_fhat3)
 
 local mc_full=round(r(theta),.001)
 local mc_full : display %9.3fc `mc_full'
@@ -40,7 +40,7 @@ drop fhat3_95low fhat3_95high Yj3 Xj3 r03 fhat3 se_fhat3
 ****************************
 * mayoral elections
 ****************************
-DCdensity mv_bm_wing, breakpoint(0) generate(Xj3 Yj3 r03 fhat3 se_fhat3)
+DCdensity mv_bm_party_P1, breakpoint(0) generate(Xj3 Yj3 r03 fhat3 se_fhat3)
 
 local mc_full=round(r(theta),.001)
 local mc_full : display %9.3fc `mc_full'
@@ -83,7 +83,8 @@ graph combine "$tmp\iten1.gph" "$tmp\iten2.gph", 	/*
 	*/	
 	
 				* save graph 
-graph save Graph "$outdir\graphs\_mccrary_test.gph", replace
-graph use "$outdir\graphs\_mccrary_test.gph"
-erase "$outdir\graphs\_mccrary_test.gph"
+graph save Graph "$tmp\_mccrary_test.gph", replace
+graph use "$tmp\_mccrary_test.gph"
 graph export "$outdir\graphs\_mccrary_test.png", replace	
+graph export "$outdir\graphs\_mccrary_test.eps", as(eps) replace
+erase "$tmp\_mccrary_test.gph"

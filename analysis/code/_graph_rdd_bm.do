@@ -103,7 +103,7 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	sort mv_bm_party	
+	cap sort mv_bm_party	
 	
 	twoway (scatter mean_relief_low_bin vote_bins if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
