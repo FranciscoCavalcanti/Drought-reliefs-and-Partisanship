@@ -16,6 +16,7 @@ twoway  (lpolyci relief_mv_bm drought if alg_mv_bm_party == 1 & drought>=-2.0 & 
 	*/ , 	/* yline(0) xline(-0.1, lpattern(shortdash)) 
 	*/  /* 	xline(1.1, lpattern(shortdash))
 	*/ 	title("") 	/*
+	*/	graphregion(color(none)) bgcolor(none) 	/*
 	*/ 	subtitle("During two years before mayoral elections") 	/*
 	*/ 	ytitle("Likelihood of transfers", size() axis(1)) 	/*
 	*/ 		/* ytitle("Density", size() axis(2)) 	

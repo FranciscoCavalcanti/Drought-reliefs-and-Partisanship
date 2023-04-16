@@ -151,6 +151,7 @@ use "$inpdir/database.dta", clear
 	graph use "$tmp\_graph_kernel.gph"
 	graph export "$outdir\graphs\_graph_kernel.png", replace	
 	graph export "$outdir\graphs\_graph_kernel.eps", as(eps) replace
+	graph export "$outdir\graphs\_graph_kernel.pdf", as(pdf) replace
 
 
 * Figure 5: Alignment impact on obtaining aid relief for SPEI ranges
