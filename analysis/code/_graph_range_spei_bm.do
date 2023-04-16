@@ -278,13 +278,13 @@
 		*/ 		/* offset()   
 		*/ 	  	/* citop
 		*/ 	ciopts( recast(rcap) color(blue)  lpattern(dash_dot) lwidth(medium ) )   	/*
-		*/	xtitle("") 	/*
+		*/	xtitle("Standardised Precipitation Evapotranspiration Index") 	/*
 		*/	xlabel(, labsize(small) angle(45))	/*	 xlabel(, grid )
 		*/	xline(7.5, lpattern(shortdash) lwidth(medium) lcolor(black))	/* add horizontal lines at specified x values
 		*/	ytitle("Coeff. of alignmemnt in RDD")	/*	
 		*/	yline(0.00, lpattern(shortdash) lwidth(medium) lcolor(black))	/* add horizontal lines at specified y values
 		*/	ylabel(#10, grid labsize(small)) 	/*
-		*/	yscale(axis(1) range(-0.2 0.3) lstyle(none) )	/* how y axis looks	
+		*/	yscale(axis(1) range(-0.3 0.5) lstyle(none) )	/* how y axis looks	
 		*/	legend(off) /*  legend(row(1) size(small)  symxsize(*0.2) ) legend explaining what means what		
 		*/	note("")	/*
 		*/   /*  recast(bar)

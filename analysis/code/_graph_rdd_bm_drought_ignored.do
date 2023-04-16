@@ -67,16 +67,16 @@
 	* Implement RDD graphs
 	****************
 	set scheme  s1mono  
-	cap sort mv_bm_party	
+	cap sort mv_bm_party_P1	
 	
 	twoway (scatter mean_relief vote_bins if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(solid) lcolor(black))	/*
-		*/(line lb1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(dash_dot) lcolor(black))	/*
+		*/(line lb1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(dash) lcolor(black))	/*
 		*/(scatter mean_relief vote_bins if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, xline(0) color(red) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bm_party_P1 if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, lpattern(solid) lcolor(black))	/*				
-		*/(line lb1 mv_bm_party_P1 if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, lpattern(dash_dot) lcolor(black))	/*
-		*/(line ub1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(dash_dot) lcolor(black))	/*
-		*/(line ub1 mv_bm_party_P1 if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, lpattern(dash_dot) lcolor(black))	/*	
+		*/(line lb1 mv_bm_party_P1 if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, lpattern(dash) lcolor(black))	/*
+		*/(line ub1 mv_bm_party_P1 if mv_bm_party_P1 <= 0.0   &   mv_bm_party_P1 >= -$CCT_party, lpattern(dash) lcolor(black))	/*
+		*/(line ub1 mv_bm_party_P1 if mv_bm_party_P1 > 0.0   &   mv_bm_party_P1 <= $CCT_party, lpattern(dash) lcolor(black))	/*	
 		*/ , /*
 		*/ 	title("") 	/*
 		*/ 	subtitle("During two years before mayoral elections") 	/*

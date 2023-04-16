@@ -145,12 +145,12 @@
 	
 	twoway (scatter mean_drought_bin vote_bins if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, xline(0) color(blue) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party & low==1, lpattern(solid) lcolor(black))	/*
-		*/(line lb1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, lpattern(dash_dot) lcolor(black))	/*
+		*/(line lb1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, lpattern(dash) lcolor(black))	/*
 		*/(scatter mean_drought_bin vote_bins if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party  & low==1, xline(0) color(red) msymbol(circle_hollow)) /*
 		*/(line fitted_values1 mv_bp_party_P1 if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party   & low==1, lpattern(solid) lcolor(black))	/*				
-		*/(line lb1 mv_bp_party_P1 if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party   & low==1, lpattern(dash_dot) lcolor(black))	/*
-		*/(line ub1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, lpattern(dash_dot) lcolor(black))	/*
-		*/(line ub1 mv_bp_party_P1 if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party   & low==1, lpattern(dash_dot) lcolor(black))	/*	
+		*/(line lb1 mv_bp_party_P1 if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party   & low==1, lpattern(dash) lcolor(black))	/*
+		*/(line ub1 mv_bp_party_P1 if mv_bp_party_P1 <= 0.0   &   mv_bp_party_P1 >= -$CCT_party  & low==1, lpattern(dash) lcolor(black))	/*
+		*/(line ub1 mv_bp_party_P1 if mv_bp_party_P1 > 0.0   &   mv_bp_party_P1 <= $CCT_party   & low==1, lpattern(dash) lcolor(black))	/*	
 		*/ , /*
 		*/ 	title("") 	/*
 		*/ 	subtitle("SPEI") 	/*
