@@ -8,10 +8,8 @@ rdbwselect relief_mv_bp mv_bp_party_P1 if mv_bp_party_P1~=., all
 	global CCT_party : display %9.3fc $CCT_party
 
 dis $CCT_party 
-// $CCT_party = 0.117
 
 keep if ( mv_bp_party_P1 <= $CCT_party &   mv_bp_party_P1 >= -$CCT_party) & relief_mv_bp!=.
-count // 3,027
 
 
 *** Keep relevant sample size:

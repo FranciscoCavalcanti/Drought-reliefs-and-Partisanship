@@ -8,7 +8,7 @@
 
 gen drought_spi= -SPI24_mv_bp // positive values of SPI represent droughts
 
-gen drought_spei= -SPEI24_mv_bp // positive values of SPI represent droughts
+gen drought_spei= -SPEI24_mv_bp // positive values of SPEI represent droughts
 
 *** Generate a dummy account for the fact that negative values are non-drought for the 50-75 percentiles
 gen low_spi=(drought_spi<0)

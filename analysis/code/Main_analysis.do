@@ -14,7 +14,7 @@ version 16.1
 global ROOT "C:/Users/DELL/Documents/GitHub/Drought-reliefs-and-Partisanship"
 
 * make sure there are output folders
-global inpdir				"$ROOT/data"
+global inpdir				"$ROOT/build/output"
 global outdir				"$ROOT/analysis/output"
 global codedir    			"$ROOT/analysis/code"
 global tmp					"$ROOT/analysis/tmp"
@@ -28,10 +28,12 @@ cap mkdir "$outdir/regressions"
 *******************************************************************************
 * install packages for replication
 *******************************************************************************
+/*
 net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/master/src/") // for reghdfe
 net describe st0366, from(http://www.stata-journal.com/software/sj14-4)
 net install st0366, replace // for rdbwselect
 ssc install boottest
+*/
 
 *******************************************************************************
 * install packages for replication - MANNUALLY
@@ -51,8 +53,7 @@ ssc install boottest
 ********************************
 *** CALL DATABASE			 ***
 ********************************
-use "$inpdir/database.dta", clear
-
+use "$inpdir/main_database.dta", clear
 
 **************************************************************
 *** Results referring to the section:
@@ -378,9 +379,8 @@ use "$inpdir/database.dta", clear
 	restore
 
 * Table OA5: Impact of alignment on the assignment of aid relief*
-* It would be interesting to see how your findings change using alternative ranges.
 
-preserve
+	preserve
 	do "$codedir/_generate_variables_bm.do"
 	do "$codedir/_generate_variables_bm_alternative_ranges.do"
 	do "$codedir/_table_regression_bm_alternative_ranges.do"
