@@ -1,3 +1,5 @@
 
 analysis/tmp/
 analysis/output/regressions/*.txt
+data/database.dta
+*.dta
