@@ -1,4 +1,4 @@
-Project Name: Drought-reliefs and Partisanship
+## Project Name: [Drought-reliefs and Partisanship](http://dx.doi.org/10.13140/RG.2.2.29618.07364)
 
 Authors: F. Boffa, F. Cavalcanti, C. Fons-Rosen, A. Piolatto
 
@@ -14,7 +14,7 @@ The replication package includes two main folders: "build" and "analysis". The "
 
 To replicate the results, please follow these steps:
 
-1. Download and extract the replication package to a folder of your choice.
+1. Download and extract the replication package to a folder of your choice: [Replication Package: https://doi.org/10.3886/E188961](https://doi.org/10.3886/E188961)
 2. Open the code file (Main_analysis.do) located in the folder (.\analysis\code) using your preferred Stata software.
 3. Set the working directory to the folder where the replication package has been extracted.
 4. Change the path to the main analysis folder specified at line 14 in the code file to the directory where the replication package is located.
