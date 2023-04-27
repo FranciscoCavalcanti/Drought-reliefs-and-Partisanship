@@ -1,6 +1,9 @@
-## Project Name: [Drought-reliefs and Partisanship](http://dx.doi.org/10.13140/RG.2.2.29618.07364)
+## Project Name: Drought-reliefs and Partisanship
 
 Authors: F. Boffa, F. Cavalcanti, C. Fons-Rosen, A. Piolatto
+
+[Online Appendix: http://dx.doi.org/10.13140/RG.2.2.29618.07364](http://dx.doi.org/10.13140/RG.2.2.29618.07364)
+[Replication Package: http://dx.doi.org/10.13140/RG.2.2.29618.07364](http://dx.doi.org/10.13140/RG.2.2.29618.07364)
 
 ## Introduction
 
